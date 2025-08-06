@@ -1,6 +1,7 @@
 # mixin
 
-🔁 1. Media Queries (адаптивность)
+🎯 Полезные SASS миксины
+1. 📱 Адаптивные media-запросы
 scss
 Копировать
 Редактировать
@@ -15,7 +16,7 @@ scss
     @media (max-width: 1200px) { @content; }
   }
 }
-Пример использования:
+Пример:
 
 scss
 Копировать
@@ -26,7 +27,7 @@ scss
     padding: 10px;
   }
 }
-📏 2. Центрирование Flexbox'ом
+2. 🎯 Центрирование Flexbox'ом
 scss
 Копировать
 Редактировать
@@ -43,7 +44,7 @@ scss
 .modal {
   @include flex-center;
 }
-📐 3. Обрезка текста (многоточие)
+3. ✂️ Обрезка текста (многоточие)
 scss
 Копировать
 Редактировать
@@ -61,7 +62,7 @@ scss
   width: 200px;
   @include text-truncate;
 }
-🔳 4. Размеры в одном миксине
+4. 📏 Размеры (ширина и высота)
 scss
 Копировать
 Редактировать
@@ -75,9 +76,9 @@ scss
 Копировать
 Редактировать
 .avatar {
-  @include size(50px); // ширина и высота по 50px
+  @include size(50px);
 }
-🟰 5. Псевдоэлементы (::before и ::after)
+5. 🧩 Псевдоэлементы
 scss
 Копировать
 Редактировать
@@ -97,7 +98,7 @@ scss
   width: 5px;
   height: 5px;
 }
-🌈 6. Градиентный фон
+6. 🌈 Градиентный фон
 scss
 Копировать
 Редактировать
@@ -112,7 +113,7 @@ scss
 .header {
   @include gradient(#ff8a00, #e52e71);
 }
-💡 7. Transition + customizable property
+7. ⚡ Плавные переходы
 scss
 Копировать
 Редактировать
@@ -126,4 +127,97 @@ scss
 Редактировать
 .link {
   @include transition(color);
+}
+8. 🔤 Подключение шрифтов
+scss
+Копировать
+Редактировать
+@mixin font-face($name, $file, $weight: 400, $style: normal) {
+  @font-face {
+    font-family: "#{$name}";
+    src: local("#{$file}"),
+         url('../fonts/#{$file}.woff2') format('woff2'),
+         url('../fonts/#{$file}.woff') format('woff');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+Пример:
+
+scss
+Копировать
+Редактировать
+@include font-face("Roboto", "roboto-regular", 400);
+9. 🖼️ Фоновые изображения
+scss
+Копировать
+Редактировать
+@mixin bg ($size: "contain", $position: "center") {
+  background-size: #{$size};
+  background-position: #{$position};
+  background-repeat: no-repeat;
+}
+Пример:
+
+scss
+Копировать
+Редактировать
+.icon {
+  background-image: url('../img/icon.svg');
+  @include bg("cover", "top left");
+}
+10. 🎮 Анимация кнопок
+scss
+Копировать
+Редактировать
+@mixin btn_anim($scaleMax: 1.05, $scaleMin: 0.95) {
+  transform-origin: center center;
+  transition: all ease-out 240ms;
+
+  &:hover {
+    transform: scale($scaleMax);
+  }
+
+  &:focus {
+    outline: transparent;
+  }
+
+  &:focus-visible {
+    transform: scale($scaleMax) translateY(-5%);
+  }
+
+  &:active {
+    transform: scale($scaleMin);
+  }
+}
+Пример:
+
+scss
+Копировать
+Редактировать
+.btn {
+  @include btn_anim;
+}
+11. 🧼 Обнуление стилей кнопки
+scss
+Копировать
+Редактировать
+@mixin no-btn ($display: "inline-block") {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  cursor: pointer;
+  appearance: none;
+  display: #{$display};
+}
+Пример:
+
+scss
+Копировать
+Редактировать
+.icon-btn {
+  @include no-btn;
 }
