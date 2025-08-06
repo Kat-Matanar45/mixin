@@ -1,5 +1,3 @@
-# mixin
-
 # 🎯 Полезные SASS миксины
 
 Коллекция универсальных миксинов для ускорения верстки и улучшения читаемости кода.
@@ -20,3 +18,53 @@
     @media (max-width: 1200px) { @content; }
   }
 }
+```
+
+Пример использования:
+
+```scss
+.container {
+  padding: 20px;
+  @include respond(md) {
+    padding: 10px;
+  }
+}
+```
+
+## 2. 🎯 Центрирование Flexbox'ом
+
+```scss
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+Пример:
+
+```scss
+.modal {
+  @include flex-center;
+}
+```
+
+## 3. ✂️ Обрезка текста (многоточие)
+
+```scss
+@mixin text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+```
+
+Пример:
+
+```scss
+.title {
+  width: 200px;
+  @include text-truncate;
+}
+```
+
