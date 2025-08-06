@@ -257,4 +257,16 @@
 
 ---
 
+## 12. :fire: Для контейнеров
+
+```scss
+@mixin container($max-width:"120rem",$padding:"2rem"){
+	width: 100%;
+	max-width: #{$max-width};
+	padding: 0 #{$padding};
+	margin: 0 auto;
+}
+```
+---
+
 > 💡 **Совет:** вынеси все миксины в файл `_mixins.scss` и подключай его через `@import` или `@use`.
